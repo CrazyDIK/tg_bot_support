@@ -1,4 +1,3 @@
-import asyncio
 from aiogram import Bot, Router, F
 from aiogram.types import Message
 from database.bd import Database
@@ -22,4 +21,5 @@ async def get_users_exists(message: Message):
 @router.message(F.text == "/filial")
 async def inline_key(message: Message):
     await message.answer("Выбери филиал", reply_markup=filial_key)
+
 
