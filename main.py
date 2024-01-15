@@ -16,7 +16,7 @@ async def main():
     dp = Dispatcher()
     dp.include_routers(callback_handlers.router, handlers.router, fst.router)
     scheduler.start()
-    scheduler.add_job(print_happy_birthday, "cron", hour=8, kwargs={"bot": bot})
+    scheduler.add_job(print_happy_birthday, "cron", hour=8, minute=15, kwargs={"bot": bot})
     await set_commands(bot)
     try:
         await dp.start_polling(bot)

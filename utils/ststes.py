@@ -5,3 +5,7 @@ class FormADM(StatesGroup):
     first_name = State()
     date_happy_birthday = State()
     filial = State()
+
+class IT_Support_FST(StatesGroup):
+    name_user = State()
+    info_step = State()
