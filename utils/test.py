@@ -2,7 +2,7 @@ from datetime import datetime
 from time import strftime
 
 
-data = '10.11.2023'
+data = f'{datetime.now()}'
 
 def convert_date_from_text(date):
     return datetime.strptime(date, '%d.%m.%Y').timestamp()

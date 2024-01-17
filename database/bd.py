@@ -8,16 +8,23 @@ def date_convert_text(data):
 class Database:
     def __init__(self, db_file):
         self.connection = sqlite3.connect(db_file)
-        self.cur = self.connection.cursor()
+        self.cursor = self.connection.cursor()
 
-    def add_user(self, user_id, first_name, last_name):
+    def add_user(self, tg_id, user_name):
         with self.connection:
-            self.cur.execute(
-                "INSERT INTO `users` (`id`, `first_name`, last_name) VALUES (?,?,?)",
-                (user_id, first_name, last_name),
+            self.cursor.execute(
+                "INSERT INTO `users` (`tg_id`, user_name) VALUES (?,?)",
+                (tg_id, user_name),
             )
 
-    def user_exists(self, user_id):
+    def user_exists(self, tg_id):
         with self.connection:
-            result = self.cur.execute("SELECT * FROM `users` WHERE `id` = ?", (user_id,)).fetchall()
+            result = self.cursor.execute("SELECT * FROM `users` WHERE `tg_id` = ?", (tg_id,)).fetchall()
             return bool(len(result))
+        
+    def get_tg_id(self, tg_id):
+        with self.connection:
+            result = self.cursor.execute("SELECT `id` FROM `users` WHERE `tg_id` = ?", (tg_id,))
+            return result.fetchone(0)[0]
+        
+    
